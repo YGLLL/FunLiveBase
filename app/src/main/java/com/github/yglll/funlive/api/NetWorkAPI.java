@@ -12,6 +12,7 @@ package com.github.yglll.funlive.api;
 public class NetWorkAPI {
     //base地址
     public static final String baseUrl="http://open.douyucdn.cn/";
+    public static final String baseUrl_capi = "http://capi.douyucdn.cn/";
 
     //获取直播房间列表
     //http://open.douyucdn.cn/api/RoomApi/live/{分类 ID 戒者分类别名}
@@ -23,4 +24,7 @@ public class NetWorkAPI {
 
     //获取所有游戏分类 /api/RoomApi/game
     public static final String game="api/RoomApi/game";
+
+    //    首页轮播
+    public static final String getCarousel = "api/v1/slide/6";
 }

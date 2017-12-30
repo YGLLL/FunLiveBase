@@ -3,7 +3,10 @@ package com.github.yglll.funlive.presenter.interfaces;
 import com.github.yglll.funlive.base.BaseModel;
 import com.github.yglll.funlive.base.BasePresenter;
 import com.github.yglll.funlive.base.BaseView;
+import com.github.yglll.funlive.model.logic.HomeCarousel;
+import com.github.yglll.funlive.net.Response.HttpResponse;
 
+import java.util.List;
 import java.util.Map;
 
 import rx.Observable;
@@ -19,12 +22,13 @@ import rx.Observable;
  **/
 public interface TestPresenterInterfaces {
     interface View extends BaseView{
-        void showString(String string);
+        void showString(String list);
     }
 
     interface Model extends BaseModel{
         Observable<String> getString(String string , Map<String,Integer> map);
-        Observable<String> getGameString(Map<String,Integer> map);
+        Observable<List<String>> getGameString(Map<String,Integer> map);
+        Observable<HttpResponse<List<HomeCarousel>>> getCarousel();
     }
 
     abstract class Presenter extends BasePresenter<View,Model>{

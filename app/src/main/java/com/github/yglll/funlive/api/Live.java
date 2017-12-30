@@ -1,5 +1,9 @@
 package com.github.yglll.funlive.api;
 
+import com.github.yglll.funlive.model.logic.HomeCarousel;
+import com.github.yglll.funlive.net.Response.HttpResponse;
+
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -10,6 +14,7 @@ import retrofit2.http.QueryMap;
 import rx.Observable;
 
 import static com.github.yglll.funlive.api.NetWorkAPI.game;
+import static com.github.yglll.funlive.api.NetWorkAPI.getCarousel;
 import static com.github.yglll.funlive.api.NetWorkAPI.roomList;
 
 /**
@@ -26,5 +31,13 @@ public interface Live {
     Observable<String> getLiveList(@Path("id") String id, @QueryMap Map<String, Integer> params);
 
     @GET(game)
-    Observable<String> getGameString(@QueryMap Map<String, Integer> params);
+    Observable<List<String>> getGameString(@QueryMap Map<String, Integer> params);
+
+    /**
+     * 首页   推荐轮播图
+     *
+     * @return
+     */
+    @GET(getCarousel)
+    Observable<HttpResponse<List<HomeCarousel>>> getCarousel();
 }

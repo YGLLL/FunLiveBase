@@ -43,7 +43,7 @@ public class RetrofitClient {
 
         retrofit=new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .addConverterFactory(new MyConverterFactory())
+                .addConverterFactory(MyConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         return retrofit.create(service);

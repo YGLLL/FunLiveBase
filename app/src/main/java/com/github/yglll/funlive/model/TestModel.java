@@ -1,10 +1,14 @@
 package com.github.yglll.funlive.model;
 
 import com.github.yglll.funlive.api.Live;
+import com.github.yglll.funlive.api.NetWorkAPI;
+import com.github.yglll.funlive.model.logic.HomeCarousel;
+import com.github.yglll.funlive.net.Response.HttpResponse;
 import com.github.yglll.funlive.net.RetrofitClient;
 import com.github.yglll.funlive.presenter.impl.TestPresenter;
 import com.github.yglll.funlive.presenter.interfaces.TestPresenterInterfaces;
 
+import java.util.List;
 import java.util.Map;
 
 import rx.Observable;
@@ -31,11 +35,23 @@ public class TestModel implements TestPresenterInterfaces.Model{
     }
 
     @Override
-    public Observable<String> getGameString(Map<String, Integer> map) {
+    public Observable<List<String>> getGameString(Map<String, Integer> map) {
         return new RetrofitClient()
                 .builder(Live.class)
                 .getGameString(map)
                 .subscribeOn(Schedulers.io())//在io线程发出事件
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+
+    @Override
+    public Observable<HttpResponse<List<HomeCarousel>>> getCarousel() {
+        return new RetrofitClient()
+                .setBaseUrl(NetWorkAPI.baseUrl_capi)
+                .builder(Live.class)
+                .getCarousel()
+                .subscribeOn(Schedulers.io())//在io线程发出事件
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
 }

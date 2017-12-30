@@ -2,6 +2,9 @@ package com.github.yglll.funlive.net.factory;
 
 import android.util.Log;
 
+import com.github.yglll.funlive.net.Response.HttpResponse;
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -22,6 +25,20 @@ import retrofit2.Retrofit;
  **/
 public class MyConverterFactory extends Converter.Factory {
     private static final String TAG = "MyConverterFactory";
+    private final Gson gson;
+
+    public  static MyConverterFactory create()
+    {
+        return create(new Gson());
+    }
+    public static MyConverterFactory create(Gson gson) {
+        return new MyConverterFactory(gson);
+    }
+    private MyConverterFactory(Gson gson) {
+        if (gson == null) throw new NullPointerException("gson == null");
+        this.gson = gson;
+    }
+
     @Override
     public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
         Log.i(TAG,"public Converter<?, RequestBody> requestBodyConverter");
@@ -29,10 +46,11 @@ public class MyConverterFactory extends Converter.Factory {
     }
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
-        Log.i(TAG,"public Converter<ResponseBody, ?> responseBodyConverter");
-        if (String.class.equals(type)){
-            return new MyResponseBodyConverter();
-        }
-        return null;
+        Log.i(TAG,"responseBodyConverter:"+type.toString());
+        //if (HttpResponse.class.equals(type)){
+            Log.i(TAG,"HttpResponse.class.equals(type)");
+            return new MyResponseBodyConverter<>(gson,type);
+        //}
+        //return null;
     }
 }

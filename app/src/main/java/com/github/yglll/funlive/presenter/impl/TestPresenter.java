@@ -2,11 +2,15 @@ package com.github.yglll.funlive.presenter.impl;
 
 import android.util.Log;
 
+import com.github.yglll.funlive.model.logic.HomeCarousel;
+import com.github.yglll.funlive.net.Response.HttpResponse;
 import com.github.yglll.funlive.presenter.interfaces.TestPresenterInterfaces;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
+import rx.Observable;
 import rx.Observer;
 
 /**
@@ -25,7 +29,7 @@ public class TestPresenter extends TestPresenterInterfaces.Presenter{
         Map<String,Integer> map=new LinkedHashMap<>();
         map.put("offset",0);
         map.put("limit",1);
-        model.getGameString(map).subscribe(new Observer<String>() {
+        model.getCarousel().subscribe(new Observer<HttpResponse<List<HomeCarousel>>>() {
             @Override
             public void onCompleted() {
                 Log.i(TAG,"public void onCompleted()");
@@ -37,8 +41,13 @@ public class TestPresenter extends TestPresenterInterfaces.Presenter{
             }
 
             @Override
-            public void onNext(String string) {
-                view.showString(string);
+            public void onNext(HttpResponse<List<HomeCarousel>> httpResponse) {
+                List<HomeCarousel> list=httpResponse.getData();
+                String value="";
+                for (HomeCarousel homeCarousel:list){
+                    value=value+"\n"+homeCarousel.getRoom().getRoom_src();
+                }
+                view.showString(value);
             }
         });
     }

@@ -13,6 +13,7 @@ import com.github.yglll.funlive.model.TestModel;
 import com.github.yglll.funlive.presenter.impl.TestPresenter;
 import com.github.yglll.funlive.presenter.interfaces.TestPresenterInterfaces;
 
+import java.util.List;
 import java.util.Map;
 
 import rx.Observable;
@@ -46,7 +47,9 @@ public class TestFragment extends BaseFragment<TestModel,TestPresenter> implemen
     }
 
     @Override
-    public void showString(String string) {
-        textView.setText(string);
+    public void showString(String list) {
+        textView.setText(list);
     }
+
+    // TODO: 2017/12/28 增加轮播图 
 }
