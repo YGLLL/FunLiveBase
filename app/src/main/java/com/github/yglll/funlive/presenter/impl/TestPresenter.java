@@ -26,6 +26,7 @@ public class TestPresenter extends TestPresenterInterfaces.Presenter{
     private static final String TAG = "TestPresenter";
     @Override
     public void setString() {
+        /*
         Map<String,Integer> map=new LinkedHashMap<>();
         map.put("offset",0);
         map.put("limit",1);
@@ -43,11 +44,34 @@ public class TestPresenter extends TestPresenterInterfaces.Presenter{
             @Override
             public void onNext(HttpResponse<List<HomeCarousel>> httpResponse) {
                 List<HomeCarousel> list=httpResponse.getData();
+
+            }
+        });
+        */
+    }
+
+    @Override
+    public void setCarousel() {
+        model.getCarousel().subscribe(new Observer<HttpResponse<List<HomeCarousel>>>() {
+            @Override
+            public void onCompleted() {
+                Log.i(TAG,"public void onCompleted()");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i(TAG,"public void onError(Throwable e)");
+            }
+
+            @Override
+            public void onNext(HttpResponse<List<HomeCarousel>> httpResponse) {
+                List<HomeCarousel> list=httpResponse.getData();
                 String value="";
                 for (HomeCarousel homeCarousel:list){
-                    value=value+"\n"+homeCarousel.getRoom().getRoom_src();
+                    value=value+"\n"+homeCarousel.getPic_url();
                 }
                 view.showString(value);
+                view.showCarousel(list);
             }
         });
     }

@@ -23,6 +23,7 @@ import rx.Observable;
 public interface TestPresenterInterfaces {
     interface View extends BaseView{
         void showString(String list);
+        void showCarousel(List<HomeCarousel> list);
     }
 
     interface Model extends BaseModel{
@@ -33,5 +34,6 @@ public interface TestPresenterInterfaces {
 
     abstract class Presenter extends BasePresenter<View,Model>{
         public abstract void setString();
+        public abstract void setCarousel();
     }
 }
