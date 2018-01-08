@@ -3,7 +3,7 @@
     package="com.github.yglll.funlive">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    
+
     <application
         android:name=".application.FLApplication"
         android:allowBackup="true"
@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.VideoPlayer"></activity>
     </application>
 
 </manifest>

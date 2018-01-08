@@ -1,6 +1,7 @@
 package com.github.yglll.funlive.net;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.github.yglll.funlive.api.NetWorkAPI;
 import com.github.yglll.funlive.net.factory.MyConverterFactory;
@@ -46,6 +47,7 @@ public class RetrofitClient {
                 .addConverterFactory(MyConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
+        Log.i("xiancheng","Retrofit id:"+android.os.Process.myTid());
         return retrofit.create(service);
     }
 }

@@ -29,7 +29,7 @@ public interface TestPresenterInterfaces {
     interface Model extends BaseModel{
         Observable<String> getString(String string , Map<String,Integer> map);
         Observable<List<String>> getGameString(Map<String,Integer> map);
-        Observable<HttpResponse<List<HomeCarousel>>> getCarousel();
+        Observable<List<HomeCarousel>> getCarousel();
     }
 
     abstract class Presenter extends BasePresenter<View,Model>{

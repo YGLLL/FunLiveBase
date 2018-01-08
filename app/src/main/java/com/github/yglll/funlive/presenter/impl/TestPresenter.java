@@ -52,7 +52,8 @@ public class TestPresenter extends TestPresenterInterfaces.Presenter{
 
     @Override
     public void setCarousel() {
-        model.getCarousel().subscribe(new Observer<HttpResponse<List<HomeCarousel>>>() {
+        Log.i("xiancheng","id:"+android.os.Process.myTid());
+        model.getCarousel().subscribe(new Observer<List<HomeCarousel>>() {
             @Override
             public void onCompleted() {
                 Log.i(TAG,"public void onCompleted()");
@@ -64,8 +65,8 @@ public class TestPresenter extends TestPresenterInterfaces.Presenter{
             }
 
             @Override
-            public void onNext(HttpResponse<List<HomeCarousel>> httpResponse) {
-                List<HomeCarousel> list=httpResponse.getData();
+            public void onNext(List<HomeCarousel> list) {
+                Log.i("xiancheng","id:"+android.os.Process.myTid());
                 String value="";
                 for (HomeCarousel homeCarousel:list){
                     value=value+"\n"+homeCarousel.getPic_url();

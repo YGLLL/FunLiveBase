@@ -1,10 +1,13 @@
 package com.github.yglll.funlive.model;
 
+import android.util.Log;
+
 import com.github.yglll.funlive.api.Live;
 import com.github.yglll.funlive.api.NetWorkAPI;
 import com.github.yglll.funlive.model.logic.HomeCarousel;
 import com.github.yglll.funlive.net.Response.HttpResponse;
 import com.github.yglll.funlive.net.RetrofitClient;
+import com.github.yglll.funlive.net.transformer.DefaultTransformer;
 import com.github.yglll.funlive.presenter.impl.TestPresenter;
 import com.github.yglll.funlive.presenter.interfaces.TestPresenterInterfaces;
 
@@ -45,13 +48,12 @@ public class TestModel implements TestPresenterInterfaces.Model{
 
 
     @Override
-    public Observable<HttpResponse<List<HomeCarousel>>> getCarousel() {
+    public Observable<List<HomeCarousel>> getCarousel() {
+        Log.i("xiancheng","Model id:"+android.os.Process.myTid());
         return new RetrofitClient()
                 .setBaseUrl(NetWorkAPI.baseUrl_capi)
                 .builder(Live.class)
                 .getCarousel()
-                .subscribeOn(Schedulers.io())//在io线程发出事件
-                .observeOn(AndroidSchedulers.mainThread());
+                .compose(new DefaultTransformer<List<HomeCarousel>>());
     }
-
 }
