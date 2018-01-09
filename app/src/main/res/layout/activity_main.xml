@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.yglll.funlive.view.MainActivity">
+    tools:context="com.github.yglll.funliveBase.view.MainActivity">
 
     <TextView
         android:id="@+id/text"
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.github.yglll.funlive.view.TestFragment"
+        android:name="com.github.yglll.funliveBase.view.TestFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"

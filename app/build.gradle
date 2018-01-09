@@ -47,7 +47,6 @@ dependencies {
     //BindView
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    //VideoPlayer
-    //compile project(path: ':InitActivity')
+    //vitamio播放视频支持
     compile project(path: ':vitamio')
 }
